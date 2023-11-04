@@ -16,6 +16,10 @@ tileMapAssetList = [
     r"src\asset\mapTiles\borderleft.png",
     r"src\asset\mapTiles\borderright.png",
     r"src\asset\mapTiles\bordertop.png",
+    r"src\asset\mapTiles\cornertopright.png",
+    r"src\asset\mapTiles\cornertopleft.png",
+    r"src\asset\mapTiles\cornerbottomright.png",
+    r"src\asset\mapTiles\cornerbottomleft.png"
 ]
 
 tilemap = tileset.tileset(tileMapAssetList)
