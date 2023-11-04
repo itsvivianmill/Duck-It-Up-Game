@@ -1,8 +1,12 @@
+
+
 p{
+    font-family: 'Poppins', sans-serif;
     text-align:center;
 }
 
 ul {
+    font-family: 'Poppins', sans-serif;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -15,6 +19,7 @@ ul {
   }
   
   li a {
+    font-family: 'Poppins', sans-serif;
     display: block;
     color: white;
     text-align: center;
@@ -24,5 +29,6 @@ ul {
   
   /* Change the link color to #111 (black) on hover */
   li a:hover {
+    font-family: 'Poppins', sans-serif;
     background-color: #111;
   }
