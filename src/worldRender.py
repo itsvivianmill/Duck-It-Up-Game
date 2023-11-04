@@ -7,6 +7,11 @@ class world:
         self.ry = ry
         self.spriteRX = spriteX
         self.spriteRY = spriteY
+        self.tileIndexMap = [rx*ry]
+        for y in range(ry):
+            for x in range(rx):
+                self.tileIndexMap[y*self.rx+x] = 1                                
 
+    def renderSelf(self):
+        pass
 
-        
