@@ -23,8 +23,8 @@ class world:
                     rect.x = math.floor(x*self.spriteRX*scaleF)
                     rect.y = math.floor(y*self.spriteRY*scaleF)
                 else:
-                    rect.x = playerCen.x*scaleF + w/2 + math.floor(x*self.spriteRX*scaleF)
-                    rect.y = playerCen.y*scaleF + h/2 + math.floor(y*self.spriteRY*scaleF)
+                    rect.x = -playerCen.x*scaleF + w/2 + math.floor(x*self.spriteRX*scaleF)
+                    rect.y = -playerCen.y*scaleF + h/2 + math.floor(y*self.spriteRY*scaleF)
                 screen.blit(pygame.transform.scale(image, (math.ceil(self.spriteRX*scaleF),math.ceil(self.spriteRY*scaleF))), rect)
 
     def loadTileMap(self,path):
