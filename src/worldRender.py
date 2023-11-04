@@ -13,14 +13,18 @@ class world:
             for x in range(rx):
                 self.tileIndexMap[y*self.rx+x] = 0                                
 
-    def renderSelf(self,screen,scaleF):
+    def renderSelf(self,screen,scaleF,playerCen):
         for y in range(self.ry):
             for x in range(self.rx):
                 image = self.tileset.image[self.tileIndexMap[y*self.rx+x]]
                 rect = image.get_rect()
                 w, h = pygame.display.get_surface().get_size()
-                rect.x = math.floor(x*self.spriteRX*scaleF)
-                rect.y = math.floor(y*self.spriteRY*scaleF    )
+                if playerCen==None:
+                    rect.x = math.floor(x*self.spriteRX*scaleF)
+                    rect.y = math.floor(y*self.spriteRY*scaleF)
+                else:
+                    rect.x = playerCen.x*scaleF + w/2 + math.floor(x*self.spriteRX*scaleF)
+                    rect.y = playerCen.y*scaleF + h/2 + math.floor(y*self.spriteRY*scaleF)
                 screen.blit(pygame.transform.scale(image, (math.ceil(self.spriteRX*scaleF),math.ceil(self.spriteRY*scaleF))), rect)
 
     def loadTileMap(self,path):
