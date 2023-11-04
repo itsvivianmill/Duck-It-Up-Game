@@ -19,7 +19,7 @@ tileMapAssetList = [
 ]
 
 tilemap = tileset.tileset(tileMapAssetList)
-worldObj = worldRender.world(5,5,32,32,tilemap)
+worldObj = worldRender.world(25,25,32,32,tilemap)
 worldObj.loadTileMap("src\map.txt")
 running = True
 pos = 0
