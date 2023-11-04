@@ -22,6 +22,7 @@ tileMapAssetList = [
     r"src\asset\mapTiles\cornerbottomleft.png", #13
     r"src\asset\mapTiles\watertipleft.png",     #14
     r"src\asset\mapTiles\watertipright.png"     #15
+    r"src\asset\mapTiles\littlewaterbottomleftTip.png" #16
 ]
 
 tilemap = tileset.tileset(tileMapAssetList)
