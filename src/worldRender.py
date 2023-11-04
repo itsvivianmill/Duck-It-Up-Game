@@ -11,7 +11,7 @@ class world:
         self.tileIndexMap = [1] * (rx*ry)
         for y in range(ry):
             for x in range(rx):
-                self.tileIndexMap[y*self.rx+x] = random.randint(0,1)                                
+                self.tileIndexMap[y*self.rx+x] = 0                                
 
     def renderSelf(self,screen):
         for y in range(self.ry):
@@ -24,3 +24,14 @@ class world:
                 rect.y = math.floor(y*self.spriteRY*scaleF    )
                 screen.blit(pygame.transform.scale(image, (math.ceil(self.spriteRX*scaleF),math.ceil(self.spriteRY*scaleF))), rect)
 
+    def loadTileMap(self,path):
+        file = open(path, "r")
+        data = file.read().split("\n")
+        header = data[0].split(" ")
+        if int(header[0])==self.rx and int(header[1])==self.ry:
+            data.pop(0)
+            print(data)
+            for y in range(len(data)):
+                for x in range(len(data[y].split(" "))):
+                    currentIndex = data[y].split(" ")[x]
+                    self.tileIndexMap[y*self.rx+x] = int(currentIndex)

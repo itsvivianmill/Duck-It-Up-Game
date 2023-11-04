@@ -5,9 +5,22 @@ import tileset
 screen = pygame.display.set_mode((300, 300), flags=pygame.RESIZABLE) 
 pygame.display.set_caption('duck')   
 
-tilemap = tileset.tileset((r"src\asset\mapTiles\grass.png",r"src\asset\mapTiles\water.png"))
-worldObj = worldRender.world(5,5,32,32,tilemap)
+tileMapAssetList = [
+    r"src\asset\mapTiles\grass.png",
+    r"src\asset\mapTiles\grassFlower.png",
+    r"src\asset\mapTiles\grassFlower2.png",
+    r"src\asset\mapTiles\grassTree.png",
+    r"src\asset\mapTiles\rock.png",
+    r"src\asset\mapTiles\water.png",
+    r"src\asset\mapTiles\boderbottom.png",
+    r"src\asset\mapTiles\borderleft.png",
+    r"src\asset\mapTiles\borderright.png",
+    r"src\asset\mapTiles\bordertop.png",
+]
 
+tilemap = tileset.tileset(tileMapAssetList)
+worldObj = worldRender.world(5,5,32,32,tilemap)
+worldObj.loadTileMap("src\map.txt")
 running = True
 pos = 0
 while running:  
