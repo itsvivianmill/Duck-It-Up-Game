@@ -1,6 +1,7 @@
 import pygame 
 import worldRender
 import tileset
+import playerObj
 #init
 screen = pygame.display.set_mode((300, 300), flags=pygame.RESIZABLE) 
 pygame.display.set_caption('duck')   
@@ -23,9 +24,16 @@ tileMapAssetList = [
     r"src\asset\mapTiles\watertipleft.png",     #14
     r"src\asset\mapTiles\watertipright.png"     #15
     r"src\asset\mapTiles\littlewaterbottomleftTip.png" #16
+    r"src\asset\mapTiles\littlewaterbottomrightTip.png"#17
+]
+
+duckAssetList = [
+    r"src\asset\duck\standfront.png" #0
 ]
 
 tilemap = tileset.tileset(tileMapAssetList)
+duckTileMap = tileset.tileset(duckAssetList)
+duck = playerObj.playerObj(duckTileMap)
 worldObj = worldRender.world(25,25,32,32,tilemap)
 worldObj.loadTileMap("src\map.txt")
 running = True
@@ -36,5 +44,5 @@ while running:
         if event.type == pygame.QUIT: 
             running = False
 
-    worldObj.renderSelf(screen)
+    worldObj.renderSelf(screen,0.7)
     pygame.display.update()
