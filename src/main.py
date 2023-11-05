@@ -8,7 +8,7 @@ import time
 import math
 from pygame import mixer
 #init
-gameState="Start"
+gameState="Run"
 screen = pygame.display.set_mode((600, 600)) 
 pygame.display.set_caption('duck')   
 
