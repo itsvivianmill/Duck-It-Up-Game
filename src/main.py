@@ -53,6 +53,7 @@ enemyAsset = [
 tilemap = tileset.tileset(tileMapAssetList)
 duckTileMap = tileset.tileset(duckAssetList)
 enemyTileMap = tileset.tileset(enemyAsset)
+bulletTile = tileset.tileset(["src\asset\duck\bullet.png"])
 
 duck = playerObj.duck(duckTileMap)
 enemyPool = []
@@ -70,6 +71,8 @@ while running:
     for event in pygame.event.get():    
         if event.type == pygame.QUIT: 
             running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            print("alla")
     w, h = pygame.display.get_surface().get_size()
     duck.playerMove()
     worldObj.renderSelf(screen,w/300,duck)
