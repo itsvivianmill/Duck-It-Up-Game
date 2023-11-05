@@ -5,6 +5,7 @@ import playerObj
 import random
 import bullet
 import time
+import math
 #init
 screen = pygame.display.set_mode((600, 600)) 
 pygame.display.set_caption('duck')   
@@ -80,7 +81,15 @@ while running:
         if event.type == pygame.QUIT: 
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            bulletPool.append(bullet.bullet(duck.x,duck.y-10,1,0,bulletTile))
+            w, h = pygame.display.get_surface().get_size()
+            mpos = pygame.mouse.get_pos()
+            dirX = (w/2-16) - mpos[0]
+            dirY = (h/2-16-10) - mpos[1]
+            print(mpos,duck.x,duck.y)
+            length = math.sqrt(dirX**2+dirY**2)
+            dirX/=-length
+            dirY/=-length
+            bulletPool.append(bullet.bullet(duck.x,duck.y-10,dirX,dirY,bulletTile))
     w, h = pygame.display.get_surface().get_size()
     screen.fill((0,0,0))
     duck.playerMove(deltaT)
