@@ -3,7 +3,7 @@ import worldRender
 import tileset
 import playerObj
 #init
-screen = pygame.display.set_mode((300, 300), flags=pygame.RESIZABLE) 
+screen = pygame.display.set_mode((600, 600)) 
 pygame.display.set_caption('duck')   
 
 tileMapAssetList = [
@@ -36,12 +36,25 @@ duckAssetList = [
     r"src\asset\duck\backwalk1.png",
     r"src\asset\duck\backwalk2.png",
     r"src\asset\duck\frontwalk1.png",
-    r"src\asset\duck\frontwalk2.png"
+    r"src\asset\duck\frontwalk2.png",
+    r"src\asset\duck\gunleft.png",
+    r"src\asset\duck\gunright.png",
+    r"src\asset\duck\gunback.png",
+    r"src\asset\duck\gunforward.png"
+]
+
+enemyAsset = [
+    r"src\asset\enemy\idle1.png",
+    r"src\asset\enemy\idle2.png",
+    r"src\asset\enemy\idle3.png"
 ]
 
 tilemap = tileset.tileset(tileMapAssetList)
 duckTileMap = tileset.tileset(duckAssetList)
-duck = playerObj.playerObj(duckTileMap)
+enemyTileMap = tileset.tileset(enemyAsset)
+
+duck = playerObj.duck(duckTileMap)
+enemyTest = playerObj.enemy(enemyTileMap)
 worldObj = worldRender.world(25,25,32,32,tilemap)
 worldObj.loadTileMap("src\map.txt")
 running = True
@@ -54,5 +67,6 @@ while running:
     w, h = pygame.display.get_surface().get_size()
     duck.playerMove()
     worldObj.renderSelf(screen,w/300,duck)
+    enemyTest.renderSelf(screen,w/300,duck)
     duck.playerRender(screen,w/300)
     pygame.display.update()
