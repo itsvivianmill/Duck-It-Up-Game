@@ -4,6 +4,7 @@ import tileset
 import playerObj
 import random
 import bullet
+import time
 #init
 screen = pygame.display.set_mode((600, 600)) 
 pygame.display.set_caption('duck')   
@@ -70,9 +71,10 @@ for i in range(5):
     enemyPool.append(playerObj.enemy(enemyTileMap))
     enemyPool[len(enemyPool)-1].x = random.randint(20,800)
     enemyPool[len(enemyPool)-1].y = random.randint(20,800)
-
+deltaT = 0.1
+start = 0
 while running:  
-
+    start = time.time()
     for event in pygame.event.get():    
         if event.type == pygame.QUIT: 
             running = False
@@ -80,13 +82,13 @@ while running:
             bulletPool.append(bullet.bullet(duck.x,duck.y-10,1,0,bulletTile))
     w, h = pygame.display.get_surface().get_size()
     screen.fill((0,0,0))
-    duck.playerMove()
+    duck.playerMove(deltaT)
     worldObj.renderSelf(screen,w/300,duck)
     for i in enemyPool:
         i.renderSelf(screen,w/300,duck)
 
     for i in bulletPool:
-        i.bulletUpdate()
+        i.bulletUpdate(deltaT)
         i.renderSelf(screen,w/300,duck)
         if i.lifeTime <= 0:
             bulletPool.remove(i)
@@ -95,3 +97,6 @@ while running:
 
     duck.playerRender(screen,w/300)
     pygame.display.update()
+
+    deltaT = time.time() - start
+    start = time.time()
