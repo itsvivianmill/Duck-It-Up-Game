@@ -2,6 +2,7 @@ import pygame
 import worldRender
 import tileset
 import playerObj
+import random
 #init
 screen = pygame.display.set_mode((600, 600)) 
 pygame.display.set_caption('duck')   
@@ -54,11 +55,16 @@ duckTileMap = tileset.tileset(duckAssetList)
 enemyTileMap = tileset.tileset(enemyAsset)
 
 duck = playerObj.duck(duckTileMap)
-enemyTest = playerObj.enemy(enemyTileMap)
+enemyPool = []
 worldObj = worldRender.world(25,25,32,32,tilemap)
 worldObj.loadTileMap("src\map.txt")
 running = True
-pos = 0
+
+for i in range(5):
+    enemyPool.append(playerObj.enemy(enemyTileMap))
+    enemyPool[len(enemyPool)-1].x = random.randint(20,800)
+    enemyPool[len(enemyPool)-1].y = random.randint(20,800)
+
 while running:  
 
     for event in pygame.event.get():    
@@ -67,6 +73,7 @@ while running:
     w, h = pygame.display.get_surface().get_size()
     duck.playerMove()
     worldObj.renderSelf(screen,w/300,duck)
-    enemyTest.renderSelf(screen,w/300,duck)
+    for i in enemyPool:
+        i.renderSelf(screen,w/300,duck)
     duck.playerRender(screen,w/300)
     pygame.display.update()
