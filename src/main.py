@@ -6,12 +6,14 @@ import random
 import bullet
 import time
 import math
+import home
+from homepagebutton import homepageButtons
 from pygame import mixer
 #init
-gameState="Run"
+gameState="Start"
 screen = pygame.display.set_mode((600, 600)) 
-pygame.display.set_caption('duck')   
-
+pygame.display.set_caption("Menu -> Time to Duck it Up!")
+pygame.init()
 tileMapAssetList = [
     r"src\asset\mapTiles\grass.png",            #0
     r"src\asset\mapTiles\grassFlower.png",      #1
@@ -104,15 +106,24 @@ while running:
             dirX/=-length
             dirY/=-length
             bulletPool.append(bullet.bullet(duck.x,duck.y-10,dirX,dirY,bulletTile))
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            print("a")
+            if home.PLAY_Button.checkForInput(pygame.mouse.get_pos()):
+                print("aa")
+                gameState="Run"
+            if home.QUIT_Button.checkForInput(pygame.mouse.get_pos()):
+                pygame.quit()
+                quit()
+    
     if gameState=="Run":
         w, h = pygame.display.get_surface().get_size()
         duck.playerMove(deltaT)
-        background = pygame.image.load(r"src\asset\mapTiles\1000pxtree.png")
-        backgroundrect=background.get_rect()
-        backgroundrect.x = (-duck.x)*(w/300)
-        backgroundrect.y = (-duck.y)*(h/300)
+        #background = pygame.image.load(r"src\asset\mapTiles\1600middleTree.png")
+        #backgroundrect=background.get_rect()
+        #backgroundrect.x = (-duck.x)*(w/300)
+        #backgroundrect.y = (-duck.y)*(h/300)
         screen.fill((0,0,0))
-        screen.blit(background, backgroundrect)
+        #screen.blit(background, backgroundrect)
         worldObj.renderSelf(screen,w/300,duck)
         for i in enemyPool:
             i.renderSelf(screen,w/300,duck)
@@ -132,10 +143,11 @@ while running:
                     enemyPool[len(enemyPool)-1].x = random.randint(20,700)
                     enemyPool[len(enemyPool)-1].y = random.randint(20,700)
                 print(len(enemyPool))
-
-            
-
         duck.playerRender(screen,w/300)
+    elif gameState=="Start":
+        home.draw_start_menu(screen)
+        
+
     pygame.display.update()
 
     deltaT = time.time() - start
