@@ -8,6 +8,7 @@ import time
 import math
 from pygame import mixer
 #init
+gameState="Start"
 screen = pygame.display.set_mode((600, 600)) 
 pygame.display.set_caption('duck')   
 
@@ -93,7 +94,7 @@ while running:
     for event in pygame.event.get():    
         if event.type == pygame.QUIT: 
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and gameState=="Run":
             w, h = pygame.display.get_surface().get_size()
             mpos = pygame.mouse.get_pos()
             dirX = (w/2-16) - mpos[0]
@@ -103,37 +104,38 @@ while running:
             dirX/=-length
             dirY/=-length
             bulletPool.append(bullet.bullet(duck.x,duck.y-10,dirX,dirY,bulletTile))
-    w, h = pygame.display.get_surface().get_size()
-    duck.playerMove(deltaT)
-    background = pygame.image.load(r"src\asset\mapTiles\1000pxtree.png")
-    backgroundrect=background.get_rect()
-    backgroundrect.x = (-duck.x)*(w/300)
-    backgroundrect.y = (-duck.y)*(h/300)
-    screen.fill((0,0,0))
-    screen.blit(background, backgroundrect)
-    worldObj.renderSelf(screen,w/300,duck)
-    for i in enemyPool:
-        i.renderSelf(screen,w/300,duck)
-        if i.DeadTimer<=0:
-            enemyPool.remove(i)
+    if gameState=="Run":
+        w, h = pygame.display.get_surface().get_size()
+        duck.playerMove(deltaT)
+        background = pygame.image.load(r"src\asset\mapTiles\1000pxtree.png")
+        backgroundrect=background.get_rect()
+        backgroundrect.x = (-duck.x)*(w/300)
+        backgroundrect.y = (-duck.y)*(h/300)
+        screen.fill((0,0,0))
+        screen.blit(background, backgroundrect)
+        worldObj.renderSelf(screen,w/300,duck)
+        for i in enemyPool:
+            i.renderSelf(screen,w/300,duck)
+            if i.DeadTimer<=0:
+                enemyPool.remove(i)
 
-    for i in bulletPool:
-        i.bulletUpdate(deltaT)
-        i.bulletCheckCollide(enemyPool,duck,w/300)
-        i.renderSelf(screen,w/300,duck)
-        if i.lifeTime <= 0:
-            Score+=1
-            print(Score)
-            bulletPool.remove(i)
-            if (len(enemyPool)<5):
-                enemyPool.append(playerObj.enemy(enemyTileMap))
-                enemyPool[len(enemyPool)-1].x = random.randint(20,700)
-                enemyPool[len(enemyPool)-1].y = random.randint(20,700)
-            print(len(enemyPool))
+        for i in bulletPool:
+            i.bulletUpdate(deltaT)
+            i.bulletCheckCollide(enemyPool,duck,w/300)
+            i.renderSelf(screen,w/300,duck)
+            if i.lifeTime <= 0:
+                Score+=1
+                print(Score)
+                bulletPool.remove(i)
+                if (len(enemyPool)<5):
+                    enemyPool.append(playerObj.enemy(enemyTileMap))
+                    enemyPool[len(enemyPool)-1].x = random.randint(20,700)
+                    enemyPool[len(enemyPool)-1].y = random.randint(20,700)
+                print(len(enemyPool))
 
-        
+            
 
-    duck.playerRender(screen,w/300)
+        duck.playerRender(screen,w/300)
     pygame.display.update()
 
     deltaT = time.time() - start
