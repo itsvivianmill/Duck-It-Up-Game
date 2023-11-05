@@ -38,6 +38,7 @@ tileMapAssetList = [
     r"src\asset\mapTiles\topTreeBorder.png", #23
     r"src\asset\mapTiles\toprightcorner.png", #24
     r"src\asset\mapTiles\bottomleftborder.png", #25
+    r"src\asset\mapTiles\topleftcorner.png", #26
 ]
 
 duckAssetList = [
