@@ -57,7 +57,7 @@ enemyAsset = [
 tilemap = tileset.tileset(tileMapAssetList)
 duckTileMap = tileset.tileset(duckAssetList)
 enemyTileMap = tileset.tileset(enemyAsset)
-bulletTile = tileset.tileset(["src\asset\duck\bullet.png"])
+bulletTile = tileset.tileset([r"src\asset\duck\bullet.png"])
 
 duck = playerObj.duck(duckTileMap)
 enemyPool = []
