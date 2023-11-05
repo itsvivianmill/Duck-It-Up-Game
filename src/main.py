@@ -70,7 +70,7 @@ worldObj = worldRender.world(25,25,32,32,tilemap)
 worldObj.loadTileMap("src\map.txt")
 running = True
 
-for i in range(5):
+for i in range(10):
     enemyPool.append(playerObj.enemy(enemyTileMap))
     enemyPool[len(enemyPool)-1].x = random.randint(20,800)
     enemyPool[len(enemyPool)-1].y = random.randint(20,800)
@@ -92,14 +92,16 @@ while running:
             dirY/=-length
             bulletPool.append(bullet.bullet(duck.x,duck.y-10,dirX,dirY,bulletTile))
     w, h = pygame.display.get_surface().get_size()
-    screen.fill((0,0,0))
     duck.playerMove(deltaT)
+    background = pygame.image.load(r"src\asset\mapTiles\tree middle.png")
+    screen.blit(background, background.get_rect())
     worldObj.renderSelf(screen,w/300,duck)
     for i in enemyPool:
         i.renderSelf(screen,w/300,duck)
 
     for i in bulletPool:
         i.bulletUpdate(deltaT)
+        i.bulletCheckCollide(enemyPool,duck,w/300)
         i.renderSelf(screen,w/300,duck)
         if i.lifeTime <= 0:
             bulletPool.remove(i)
