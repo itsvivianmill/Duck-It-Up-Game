@@ -85,7 +85,7 @@ mixer.init()
 mixer.Channel(0).set_volume(1)
 mixer.Channel(0).play(pygame.mixer.Sound(r"src\cottagecore.mp3"),loops=-1)
 #main loop
-
+Score = 0
 while running:  
     start = time.time()
     for event in pygame.event.get():    
@@ -103,7 +103,7 @@ while running:
             bulletPool.append(bullet.bullet(duck.x,duck.y-10,dirX,dirY,bulletTile))
     w, h = pygame.display.get_surface().get_size()
     duck.playerMove(deltaT)
-    background = pygame.image.load(r"src\asset\mapTiles\600pxtree.png")
+    background = pygame.image.load(r"src\asset\mapTiles\1000pxtree.png")
     backgroundrect=background.get_rect()
     backgroundrect.x = (-duck.x)*(w/300)
     backgroundrect.y = (-duck.y)*(h/300)
@@ -120,6 +120,8 @@ while running:
         i.bulletCheckCollide(enemyPool,duck,w/300)
         i.renderSelf(screen,w/300,duck)
         if i.lifeTime <= 0:
+            Score+=1
+            print(Score)
             bulletPool.remove(i)
             if (len(enemyPool)<5):
                 enemyPool.append(playerObj.enemy(enemyTileMap))
