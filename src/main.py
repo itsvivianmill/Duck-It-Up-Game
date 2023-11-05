@@ -6,6 +6,7 @@ import random
 import bullet
 import time
 import math
+from pygame import mixer
 #init
 screen = pygame.display.set_mode((600, 600)) 
 pygame.display.set_caption('duck')   
@@ -34,6 +35,7 @@ tileMapAssetList = [
     r"src\asset\mapTiles\rightTreeBorder.png",          #20
     r"src\asset\mapTiles\treecorner.png",              #21
     r"src\asset\mapTiles\middleTree.png",              #22
+    r"src\asset\mapTiles\topTreeBorder.png"
 ]
 
 duckAssetList = [
@@ -76,6 +78,12 @@ for i in range(5):
     enemyPool[len(enemyPool)-1].y = random.randint(20,700)
 deltaT = 0.1
 start = 0
+#start music
+mixer.init()
+mixer.Channel(0).set_volume(1)
+mixer.Channel(0).play(pygame.mixer.Sound(r"src\cottagecore.mp3"),loops=-1)
+#main loop
+
 while running:  
     start = time.time()
     for event in pygame.event.get():    

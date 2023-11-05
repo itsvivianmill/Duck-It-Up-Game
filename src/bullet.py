@@ -1,5 +1,5 @@
 import pygame
-
+from pygame import mixer
 
 class bullet:
     def __init__(self, x,y,vx,vy,spriteSet):
@@ -9,6 +9,8 @@ class bullet:
         self.y = y
         self.lifeTime = 120
         self.spriteSet = spriteSet
+        mixer.Channel(1).set_volume(2)
+        mixer.Channel(1).play(pygame.mixer.Sound(r"src\fire.mp3"))
 
     def bulletUpdate(self,deltaT):
         self.x += self.vx * deltaT * 200
