@@ -28,7 +28,7 @@ class bullet:
             collidedY = (bulletRect.y+8 > enRenY and bulletRect.y < enRenY + 32)
             collidedX = (bulletRect.x+8 > enRenX and bulletRect.x < enRenX + 32)
             if (collidedX and collidedY):
-                enList.remove(i)
+                i.Dead=True
 
     def renderSelf(self,screen,scaleF,playerCen):
         image = self.spriteSet.image[0]

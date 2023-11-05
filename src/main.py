@@ -57,7 +57,8 @@ duckAssetList = [
 enemyAsset = [
     r"src\asset\enemy\idle1.png",
     r"src\asset\enemy\idle2.png",
-    r"src\asset\enemy\idle3.png"
+    r"src\asset\enemy\idle3.png",
+    r"src\asset\enemy\deadvillain.png"
 ]
 
 tilemap = tileset.tileset(tileMapAssetList)
@@ -72,7 +73,7 @@ worldObj = worldRender.world(25,25,32,32,tilemap)
 worldObj.loadTileMap("src\map.txt")
 running = True
 
-for i in range(5):
+for i in range(8):
     enemyPool.append(playerObj.enemy(enemyTileMap))
     enemyPool[len(enemyPool)-1].x = random.randint(20,700)
     enemyPool[len(enemyPool)-1].y = random.randint(20,700)
@@ -102,10 +103,16 @@ while running:
     w, h = pygame.display.get_surface().get_size()
     duck.playerMove(deltaT)
     background = pygame.image.load(r"src\asset\mapTiles\600pxtree.png")
-    screen.blit(background, background.get_rect())
+    backgroundrect=background.get_rect()
+    backgroundrect.x = (-duck.x)*(w/300)
+    backgroundrect.y = (-duck.y)*(h/300)
+    screen.fill((0,0,0))
+    screen.blit(background, backgroundrect)
     worldObj.renderSelf(screen,w/300,duck)
     for i in enemyPool:
         i.renderSelf(screen,w/300,duck)
+        if i.DeadTimer<=0:
+            enemyPool.remove(i)
 
     for i in bulletPool:
         i.bulletUpdate(deltaT)

@@ -67,9 +67,15 @@ class enemy():
         self.dir = 0
         self.spriteSet =spriteSet
         self.renderIndex = 0
+        self.Dead=False
+        self.DeadTimer=60
 
     def renderSelf(self,screen,scaleF,playerCen):
-        image = self.spriteSet.image[int((time.time()*8%3))]
+        if not self.Dead:
+            image = self.spriteSet.image[int((time.time()*8%3))]
+        else:
+            image = self.spriteSet.image[3]
+            self.DeadTimer-=1
         rect = image.get_rect()
         w, h = pygame.display.get_surface().get_size()
         rect.x = (-playerCen.x)*scaleF + (w/2-16) + (self.x*scaleF)
