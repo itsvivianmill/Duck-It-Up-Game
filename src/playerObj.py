@@ -1,5 +1,6 @@
 import pygame
 import time
+import math
 class duck():
     def __init__(self,spriteSet):
       self.x = 0
@@ -57,7 +58,7 @@ class duck():
            gun = pygame.transform.scale(gun, (32*scale,32*scale))
            gunrect = gun.get_rect()
            gunrect.x = w/2-16
-           gunrect.y = h/2-45
+           gunrect.y = h/2-45-(math.sin(time.time()*13)*2)
            screen.blit(gun, gunrect)
          
 class enemy():
