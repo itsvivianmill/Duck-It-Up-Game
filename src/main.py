@@ -80,6 +80,7 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             bulletPool.append(bullet.bullet(duck.x,duck.y-10,1,0,bulletTile))
     w, h = pygame.display.get_surface().get_size()
+    screen.fill((0,0,0))
     duck.playerMove()
     worldObj.renderSelf(screen,w/300,duck)
     for i in enemyPool:
