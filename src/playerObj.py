@@ -30,7 +30,7 @@ class duck():
             self.renderIndex = int((time.time()*5)%2+1)
         else:
             self.renderIndex = 0
-            self.dir = 0
+            self.dir = 1
 
 
     def playerRender(self,screen,scale):
