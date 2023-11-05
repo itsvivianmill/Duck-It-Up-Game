@@ -5,27 +5,27 @@ class duck():
       self.x = 0
       self.y = 0
       self.dir = 0
-      self.moveSpeed =0.5
+      self.moveSpeed =100
       self.spriteSet =spriteSet
       self.renderIndex = 0
 
 
-    def playerMove(self):
+    def playerMove(self,deltaT):
         keys=pygame.key.get_pressed()
         if keys[pygame.K_UP] or keys[pygame.K_w]:
-            self.y -= self.moveSpeed
+            self.y -= self.moveSpeed * deltaT
             self.dir =4
             self.renderIndex = int((time.time()*5)%2+5)
         elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
-            self.y += self.moveSpeed
+            self.y += self.moveSpeed * deltaT
             self.dir =3
             self.renderIndex = int((time.time()*5)%2+7)
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            self.x -= self.moveSpeed
+            self.x -= self.moveSpeed * deltaT
             self.dir = 2
             self.renderIndex = int((time.time()*5)%2+3)
         elif keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            self.x += self.moveSpeed
+            self.x += self.moveSpeed * deltaT
             self.dir = 1
             self.renderIndex = int((time.time()*5)%2+1)
         else:

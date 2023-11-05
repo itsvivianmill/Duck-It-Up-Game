@@ -10,9 +10,9 @@ class bullet:
         self.lifeTime = 120
         self.spriteSet = spriteSet
 
-    def bulletUpdate(self):
-        self.x += self.vx
-        self.y += self.vy
+    def bulletUpdate(self,deltaT):
+        self.x += self.vx * deltaT * 200
+        self.y += self.vy * deltaT * 200
         self.lifeTime -= 1
 
     def renderSelf(self,screen,scaleF,playerCen):
