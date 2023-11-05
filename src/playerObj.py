@@ -3,8 +3,8 @@ import time
 import math
 class duck():
     def __init__(self,spriteSet):
-      self.x = 0
-      self.y = 0
+      self.x = 400
+      self.y = 400
       self.dir = 0
       self.moveSpeed =100
       self.spriteSet =spriteSet
