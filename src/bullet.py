@@ -2,20 +2,21 @@ import pygame
 
 
 class bullet:
-    def __init__(self, x,y,vx,vy):
+    def __init__(self, x,y,vx,vy,spriteSet):
         self.vx = vx
         self.vy = vy
         self.x = x
         self.y = y
         self.lifeTime = 120
+        self.spriteSet = spriteSet
 
     def bulletUpdate(self):
         self.x += self.vx
-        self.y += self.xy
+        self.y += self.vy
         self.lifeTime -= 1
 
     def renderSelf(self,screen,scaleF,playerCen):
-        image = self.spriteSet.image[8]
+        image = self.spriteSet.image[0]
         rect = image.get_rect()
         w, h = pygame.display.get_surface().get_size()
         rect.x = (-playerCen.x)*scaleF + (w/2-4) + (self.x*scaleF)

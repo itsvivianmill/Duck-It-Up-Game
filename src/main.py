@@ -3,6 +3,7 @@ import worldRender
 import tileset
 import playerObj
 import random
+import bullet
 #init
 screen = pygame.display.set_mode((600, 600)) 
 pygame.display.set_caption('duck')   
@@ -60,6 +61,7 @@ enemyTileMap = tileset.tileset(enemyAsset)
 bulletTile = tileset.tileset([r"src\asset\duck\bullet.png"])
 
 duck = playerObj.duck(duckTileMap)
+bulletPool =[]
 enemyPool = []
 worldObj = worldRender.world(25,25,32,32,tilemap)
 worldObj.loadTileMap("src\map.txt")
@@ -75,12 +77,21 @@ while running:
     for event in pygame.event.get():    
         if event.type == pygame.QUIT: 
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            print("alla")
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            bulletPool.append(bullet.bullet(duck.x,duck.y,1,0,bulletTile))
     w, h = pygame.display.get_surface().get_size()
     duck.playerMove()
     worldObj.renderSelf(screen,w/300,duck)
     for i in enemyPool:
         i.renderSelf(screen,w/300,duck)
+
+    for i in bulletPool:
+        i.bulletUpdate()
+        i.renderSelf(screen,w/300,duck)
+        if i.lifeTime <= 0:
+            bulletPool.remove(i)
+
+        
+
     duck.playerRender(screen,w/300)
     pygame.display.update()
