@@ -3,14 +3,14 @@ from homepagebutton import homepageButtons
 pygame.init()
 
 def get_font(size):
-    return pygame.font.Font('src\\PressStart2P-Regular.ttf', size)
+    return pygame.font.Font('PressStart2P-Regular.ttf', size)
 
-PLAY_Button= homepageButtons(image=pygame.image.load("src\\transparent.png"), pos=(400, 300), 
+PLAY_Button= homepageButtons(image=pygame.image.load("transparent.png"), pos=(400, 300), 
                     text_input="-> play!", font=get_font(45), base_color="white", hovering_color="black")
-QUIT_Button= homepageButtons(image=pygame.image.load("src\\transparent.png"), pos=(300, 550), 
+QUIT_Button= homepageButtons(image=pygame.image.load("transparent.png"), pos=(300, 550), 
                     text_input="quit", font=get_font(20), base_color="white", hovering_color="white")
 
-BG = pygame.image.load("src\\background.png")
+BG = pygame.image.load("background.png")
 def draw_start_menu(SCREEN):
     SCREEN.blit(BG,(0,0))
 
