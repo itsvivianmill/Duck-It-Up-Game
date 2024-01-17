@@ -1,4 +1,4 @@
-# GU-Hackathon-2023
+# Duck It Up Game
 Download files and run main.py <br /><br />
 When pressing the "Play" button, click between the P and L
 <br /> <br />
